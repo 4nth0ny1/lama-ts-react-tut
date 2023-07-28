@@ -1,12 +1,17 @@
 import Head from "next/head";
 import Link from "next/link";
-// import PostList from "../components/posts/PostList";
+import { useState } from "react";
+import PostList from "../components/posts/PostList";
 import Parent from "../components/children/Parent";
 import Child from "../components/children/Child";
 import SecondChild from "~/components/children/SecondChild";
 import Events from "../components/events/Events";
 
 export default function Home() {
+  const [showEvents, setShowEvents] = useState(false);
+  const [showPosts, setShowPosts] = useState(false);
+  const [showParentChild, setShowParentChild] = useState(false);
+
   return (
     <>
       <Head>
@@ -15,19 +20,39 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="p-20">
-        <h1 className="mb-4 text-3xl">lama dev typescript react tutorial</h1>
+        <h1 className="mb-4 text-3xl">lama dev ts-react tutorial</h1>
+        <div className="flex flex-row gap-4">
+          <button
+            className="rounded-xl bg-green-500 p-2"
+            onClick={() => setShowEvents(!showEvents)}
+          >
+            Events
+          </button>
+          <button
+            className="rounded-xl bg-green-500 p-2"
+            onClick={() => setShowPosts(!showPosts)}
+          >
+            Posts
+          </button>
+          <button
+            className="rounded-xl bg-green-500 p-2"
+            onClick={() => setShowParentChild(!showParentChild)}
+          >
+            Parent/Child
+          </button>
+        </div>
 
-        <Events />
+        {showEvents && <Events />}
 
-        {/* <PostList /> */}
-        <br></br>
+        {showPosts && <PostList />}
 
-        {/* <Parent>
-        <Child />
-        <hr></hr>
-        <SecondChild />
-      </Parent> */}
-        <br></br>
+        {showParentChild && (
+          <Parent>
+            <Child />
+            <hr></hr>
+            <SecondChild />
+          </Parent>
+        )}
       </div>
     </>
   );
