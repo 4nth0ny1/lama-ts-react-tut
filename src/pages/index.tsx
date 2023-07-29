@@ -6,11 +6,13 @@ import Parent from "../components/children/Parent";
 import Child from "../components/children/Child";
 import SecondChild from "~/components/children/SecondChild";
 import Events from "../components/events/Events";
+import StateExample from "../components/state/StateExample";
 
 export default function Home() {
   const [showEvents, setShowEvents] = useState(false);
   const [showPosts, setShowPosts] = useState(false);
   const [showParentChild, setShowParentChild] = useState(false);
+  const [showState, setShowState] = useState(false);
 
   return (
     <>
@@ -21,7 +23,7 @@ export default function Home() {
       </Head>
       <div className="p-20">
         <h1 className="mb-4 text-3xl">lama dev ts-react tutorial</h1>
-        <div className="flex flex-row gap-4">
+        <div className="mb-10 flex flex-row gap-4">
           <button
             className="rounded-xl bg-green-500 p-2"
             onClick={() => setShowEvents(!showEvents)}
@@ -40,6 +42,12 @@ export default function Home() {
           >
             Parent/Child
           </button>
+          <button
+            className="rounded-xl bg-green-500 p-2"
+            onClick={() => setShowState(!showState)}
+          >
+            State
+          </button>
         </div>
 
         {showEvents && <Events />}
@@ -53,6 +61,8 @@ export default function Home() {
             <SecondChild />
           </Parent>
         )}
+
+        {showState && <StateExample />}
       </div>
     </>
   );
